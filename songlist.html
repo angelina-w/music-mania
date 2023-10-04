@@ -1,0 +1,208 @@
+<html>
+  <head>
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="styleMM.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="scriptMM.js" defer></script>
+
+  </head>
+
+  <title>Song Rank</title>
+
+  <body id="listBod">
+    <div class="navbar">
+      <a href="index.html"
+        ><img
+          src="images/homeClosed.png"
+          onmouseover="this.src='images/homeOpen.png';"
+          onmouseout="this.src='images/homeClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!" /></a
+      ><br />
+      <a href="quiz.html"
+        ><img
+          src="images/quizClosed.png"
+          onmouseover="this.src='images/quizOpen.png';"
+          onmouseout="this.src='images/quizClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!"
+      /></a><br />
+      <a href="swipe.html"
+        ><img
+          src="images/swipeClosed.png"
+          onmouseover="this.src='images/swipeOpen.png';"
+          onmouseout="this.src='images/swipeClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!"
+      /></a><br />
+    </div>
+
+    <img src="images/rankTitle.png" width="1000px"/>
+    <h2>
+      Want to rank the songs you love? Create or plan playlists! Use our amazing
+      Song Ranking Function!
+    </h2>
+    <br />
+    <h3>
+      First, create a playlist. Then, click the Add Song button or Enter key to
+      add a song!
+    </h3>
+    <div id="myList" class="header">
+      <input
+        type="text"
+        id="enterPlaylistName"
+        placeholder="Enter Playlist Name..."
+      />
+      <button id="playlistBtn" onclick="addPlaylist()" style="background-color:#D3DBFF">Add Playlist</button>
+
+      <!--<h2 style="margin:5px">Main Playlist</h2>-->
+    </div>
+
+    <h3 id="faveTitle">Favorites</h3>
+    <ol id="Faves">
+    </ol>
+    <div id="songLists"></div>
+      <div id="songInput">
+        <input type="text" id="myInput" placeholder="Song Title" />
+        <input type="text" id="artistInput" placeholder="Artist" />
+        <button id="Mybutton" onclick="newElement()" style="background-color:#D3DBFF">Add</button>
+      </div>
+  </body>
+
+  <script>
+    document.getElementById("myInput").style.display = "none";
+    document.getElementById("artistInput").style.display = "none";
+    document.getElementById("Mybutton").style.display = "none";
+    var disable_song_input = false;
+
+    //add playlist
+    // var playlistName = document.getElementById("enterPlaylistName").value;
+
+    function addPlaylist() {
+      var playlistName = document.getElementById("enterPlaylistName").value;
+      if (playlistName === "") {
+        alert("You must write something!");
+      } else {
+        var playlistObj = document.getElementById(playlistName);
+        if (playlistObj === null) {
+          // the list doesn't exist yet
+          // create a new one
+          document.getElementById("songLists").innerHTML +=
+            "<ol id='" + playlistName + "'><h3>" + playlistName + "</h3></ol>";
+        }
+
+        else if (playlistObj === "Favorites") {
+          alert(
+            "To add songs to your Favorites, visit Song Swipe!"
+          );
+
+          document.getElementById("myInput").style.display = "none";
+          document.getElementById("artistInput").style.display = "none";
+          document.getElementById("Mybutton").style.display = "none";
+        }
+
+        else {
+          alert(
+            playlistName + " already exists, but you can add new songs to it!"
+          );
+        }
+
+        document.getElementById("myInput").style.display = "block";
+        document.getElementById("artistInput").style.display = "block";
+        document.getElementById("Mybutton").style.display = "block";
+        disable_song_input = false;
+
+        // Create new list item when using the enter key in the editor box NOT FUNCTIONAL YET
+        document
+          .getElementById("myInput")
+          .addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+              document.getElementById("Mybutton").click();
+            }
+          });
+
+        document
+          .getElementById("artistInput")
+          .addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+              document.getElementById("Mybutton").click();
+            }
+          });
+      }
+    }
+
+//Citing To-Do List from www.w3schools.com/howto/howto_js_todolist.asp
+    // Create new list when using the enter key in the editor box
+    document
+      .getElementById("enterPlaylistName")
+      .addEventListener("keyup", function (event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+          document.getElementById("playlistBtn").click();
+        } else {
+          if (disable_song_input === false) {
+            // song inputs not disabled yet
+            // clear and hide the song inputs when editing song list name
+            document.getElementById("myInput").style.display = "none";
+            document.getElementById("artistInput").style.display = "none";
+            document.getElementById("Mybutton").style.display = "none";
+            document.getElementById("myInput").value = "";
+            document.getElementById("artistInput").value = "";
+            disable_song_input = true; // song inputs disabled
+          }
+        }
+      });
+
+    //add swiped songs to favourites
+    var addedSongValue = (localStorage.getItem("addedSongValue") ?? '').split('\n');
+
+    if (addedSongValue) {
+      for (var i = 0; i < addedSongValue.length; i++) {
+        var li = document.createElement("li");
+        var t = document.createTextNode(addedSongValue[i]);
+        li.appendChild(t)
+        document.getElementById("Faves").appendChild(li)
+      }
+    }
+
+    function newElement() {
+      var playlistName = document.getElementById("enterPlaylistName").value;
+      var li = document.createElement("li");
+      var inputValue = document.getElementById("myInput").value;
+      var artistValue = document.getElementById("artistInput").value;
+      var songName = inputValue + " - " + artistValue;
+      var t = document.createTextNode(songName);
+      li.appendChild(t);
+
+      //close button goes along with list items
+      var close = document.createElement("span");
+      var closeBtn = "X";
+      close.style.cssFloat = "right";
+      var x = document.createTextNode(closeBtn);
+      close.appendChild(x);
+      li.appendChild(close);
+
+      //title
+      if (inputValue === "" || artistValue === "") {
+        alert("You must write something for both the song and artist name!");
+      } else {
+        document.getElementById(playlistName).appendChild(li);
+      }
+
+      document.getElementById("myInput").value = "";
+      document.getElementById("artistInput").value = "";
+
+    //on click, close button deletes the item
+      li.onclick = function () {
+        li.style.display = "none";
+      };
+    };
+//end cited code
+  </script>
+</html>

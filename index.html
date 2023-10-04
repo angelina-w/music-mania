@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Music Mania!</title>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="styleMM.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="scriptMM.js" defer></script>
+  </head>
+  <body id="homeBod">
+    <!-- The wrapper and content divs set margins and positioning -->
+    <div class="wrapper">
+      <div class="content" role="main">
+        <!-- This is the start of content for our page -->
+        <div id="home-header">
+          <nav>
+            <li id="logotoHome">
+              <a href="index.html"
+                ><img
+                  src="images/welcomeTitle.png" width="1000px"
+              /></a>
+            </li>
+          </nav>
+        </div>
+
+        <div id="illustrations">
+        <div>
+          <a href="quiz.html"
+            ><img
+              src="images/quizClosed.png"
+              onmouseover="this.src='images/quizOpen.png';"
+              onmouseout="this.src='images/quizClosed.png';"
+              class="illustration"
+              alt="Editor illustration"
+              title="Click the image!"
+          /></a>
+          <h3 style="background-color:#DAFF6A">Quiz Time is a fun trivial game that allows you to quiz yourself on various genres of music. Think you know
+              everything about your favorite music artists? See for yourself at Quiz Time!
+            </h3>
+        </div>
+
+          <div>
+            <a href="songlist.html"
+            ><img
+              src="images/rankClosed.png"
+              onmouseover="this.src='images/rankOpen.png';"
+              onmouseout="this.src='images/rankClosed.png';"
+              class="illustration"
+              alt="Editor illustration"
+              title="Click the image!"
+          /></a>
+          <h3 style="background-color:#D3DBFF">Song List is the ultimate way to keep track of all your favorite songs. Create as many playlists as you wish,
+              and add as many songs as you want to each! Songs you favorite in Song Swipe will be displayed in your Favorites.
+            </h3>
+          </div>
+
+          <div>
+            <a href="swipe.html"
+              ><img
+                src="images/swipeClosed.png"
+                onmouseover="this.src='images/swipeOpen.png';"
+                onmouseout="this.src='images/swipeClosed.png';"
+                class="illustration"
+                alt="Editor illustration"
+                title="Click the image!"
+            /></a>
+          <h3 style="background-color:#FFCAEE">
+              Song Swipe is the future of exploring new music. Want to expand your music taste? Try some new songs that
+              you've never heard before? Song Swipe is just the place for you!
+            </h3>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

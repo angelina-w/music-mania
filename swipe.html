@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hello World!</title>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="styleMM.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="scriptMM.js" defer></script>
+
+    <style>
+  button {
+    background-color: #C80086;
+    color: white;
+  }
+
+  #albumCover {
+    align-items: center;
+  }
+
+</style>
+
+  </head>
+
+  <body id="swipeBod">
+    <div class="navbar">
+      <a href="index.html"
+        ><img
+          src="images/homeClosed.png"
+          onmouseover="this.src='images/homeOpen.png';"
+          onmouseout="this.src='images/homeClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!" /></a
+      ><br>
+      <a href="quiz.html"
+        ><img
+          src="images/quizClosed.png"
+          onmouseover="this.src='images/quizOpen.png';"
+          onmouseout="this.src='images/quizClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!"
+      /></a><br>
+          <a href="songlist.html"
+          ><img
+            src="images/rankClosed.png"
+            onmouseover="this.src='images/rankOpen.png';"
+            onmouseout="this.src='images/rankClosed.png';"
+            class="illustration"
+            alt="Editor illustration"
+            title="Click the image!"
+        /></a><br>
+    </div>
+
+    <img src="images/swipeTitle.png" width="1000px"/>
+     <h3>
+       Experience new songs! Expand your music taste! Click the arrows to
+       switch songs.<br>Click the smiley :) to like and the frowney :( to dislike!
+     </h3>
+
+     <!--     timer -->
+     <div class="pageRight">
+       <div id="albumCover">
+         <div id="albumImgs">
+         </div>
+         <div class="swipeButtons">
+           <button type="button" onclick="start()" id="buttonGo">Play Song</button>
+           <button type="button" onclick="pause()" id="buttonPause">
+             Pause Song
+           </button>
+           <br />
+           <button type="button" onclick="reset()" id="buttonReset">
+             Replay Song
+           </button>
+         </div>
+       </div>
+
+     <div id="swipe">
+       <button id="swipeLeft" onclick="goLeft()">
+         <div class="triangle-left"></div>
+       </button>
+
+       <h2 id="playSong">Song Playing:<br /></h2>
+       <h3 id="songPlaying"></h3>
+
+       <button id="swipeRight" onclick="goRight()">
+         <div class="triangle-right"></div>
+       </button>
+     </div>
+
+     <div id="buttonMessage">
+       <h3 id="likeMessage">Added to Loved Songs!</h3>
+       <h3 id="dislikeMessage">
+         We'll show you fewer of these songs in the future.
+       </h3>
+     </div>
+
+     <div id="emotionButtons">
+       <h4>
+         <button id="likeButton" onclick="sendLoveMessage()">&#9786;</button>
+       </h4>
+
+       <h4>
+         <button id="dislikeButton" onclick="sendDislikeMessage()">
+           &#9785;
+         </button>
+       </h4>
+     </div>
+   </div>
+
+     <script>
+       document.getElementById("buttonPause").style.display = "none";
+       document.getElementById("buttonReset").style.display = "none";
+
+       var songs = [
+         "Child",
+         "Not For Sale",
+         "Love Shot",
+         "My Everything",
+         "Pied Piper"
+       ];
+
+       var artists = [
+         "MARK",
+         "ENHYPEN",
+         "EXO",
+         "NCT U",
+         "BTS"
+       ];
+
+       var images = [
+         "images/childImage.png",
+         "images/notforsaleImage.png",
+         "images/loveshotImage.jpg",
+         "images/myeverythingImage.jpg",
+         "images/piedpiperImage.png"
+       ]
+
+       var songNum = 0;
+
+       //swipe buttons
+       var sounds = [
+         new Audio(
+           "audio/Child.mp3"
+         ),
+         new Audio(
+           "audio/Not For Sale.mp3"
+         ),
+         new Audio(
+           "audio/Love Shot.mp3"
+         ),
+         new Audio(
+           "audio/My Everything.mp3"
+         ),
+         new Audio(
+           "audio/Pied Piper.mp3"
+         ),
+       ];
+
+       var currentSong = sounds[songNum];
+         currentSong = sounds[songNum];
+         document.getElementById("songPlaying").innerHTML =
+           songs[songNum] + "<br>" + artists[songNum];
+
+       document.getElementById("albumImgs").innerHTML = "<img src='" + images[songNum] + "'/>"
+
+       function start() {
+         console.log("hello");
+         document.getElementById("buttonPause").style.display = "block";
+         document.getElementById("buttonGo").style.display = "none";
+         currentSong.play();
+       }
+
+       function pause() {
+         document.getElementById("buttonGo").style.display = "block";
+         document.getElementById("buttonPause").style.display = "none";
+         document.getElementById("buttonReset").style.display = "block";
+         currentSong.pause();
+       }
+
+       function reset() {
+         document.getElementById("buttonReset").style.display = "none";
+         document.getElementById("buttonGo").style.display = "block";
+
+         currentSong.pause();
+         currentSong.currentTime = 0;
+
+         currentSong = sounds[songNum];
+       }
+
+       // arrows
+       function goLeft() {
+         document.getElementById("buttonPause").style.display = "none";
+         document.getElementById("buttonReset").style.display = "none";
+         document.getElementById("buttonGo").style.display = "block";
+
+         songNum -= 1;
+
+         if (songNum < 0) {
+           songNum = songs.length - 1;
+         }
+
+         currentSong.pause();
+         currentSong.currentTime = 0;
+
+         currentSong = sounds[songNum];
+         document.getElementById("songPlaying").innerHTML =
+           songs[songNum] + "<br>" + artists[songNum];
+
+         document.getElementById("albumImgs").innerHTML = "<img src='" + images[songNum] + "'/>"
+       }
+
+       function goRight() {
+         document.getElementById("buttonPause").style.display = "none";
+         document.getElementById("buttonReset").style.display = "none";
+         document.getElementById("buttonGo").style.display = "block";
+
+         songNum += 1;
+
+         if (songNum >= songs.length) {
+           songNum = 0;
+         }
+
+         currentSong.pause();
+         currentSong.currentTime = 0;
+
+         currentSong = sounds[songNum];
+         document.getElementById("songPlaying").innerHTML =
+           songs[songNum] + "<br>" + artists[songNum];
+
+         document.getElementById("albumImgs").innerHTML = "<img src='" + images[songNum] + "'/>"
+       }
+
+       var likeMessage = document.getElementById("likeMessage");
+       var dislikeMessage = document.getElementById("dislikeMessage");
+       var addedSongValue = songs[songNum] + " - " + artists[songNum];
+
+       likeMessage.style.display = "none";
+       dislikeMessage.style.display = "none";
+
+       function sendLoveMessage() {
+         likeMessage.style.display = "block";
+         dislikeMessage.style.display = "none";
+
+         //add to Song List
+         var storage = localStorage.getItem('addedSongValue')
+         var addedSongValue = songs[songNum] + " - " + artists[songNum];
+
+         localStorage.setItem("addedSongValue", storage ? storage.concat('\n' + addedSongValue) : addedSongValue);
+
+         //message goes away after 5 seconds
+         setTimeout(function () {
+           likeMessage.style.display = "none"}
+         , 3000)
+       }
+
+       function sendDislikeMessage() {
+         likeMessage.style.display = "none";
+         dislikeMessage.style.display = "block";
+         var removedSongValue = songs[songNum] + " - " + artists[songNum];
+         localStorage.setItem("addedSongValue", (localStorage.getItem('addedSongValue') ?? []).split('\n').filter(song => song !== removedSongValue).join('\n'));
+         songs.splice(songNum, 1);
+         artists.splice(songNum, 1);
+         images.splice(songNum, 1)
+         sounds.splice(songNum, 1);
+
+         setTimeout(function () {
+           dislikeMessage.style.display = "none"}
+         , 3000)
+       };
+     </script>
+   </body>
+ </html>

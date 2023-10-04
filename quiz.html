@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hello World!</title>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="styleMM.css" />
+
+    <!-- Import the webpage's javascript file -->
+    <script src="scriptMM.js" defer></script>
+  </head>
+
+  <body id="quizBod">
+    <div class="navandContent">
+      <div class="navbar">
+        <a href="index.html"
+          ><img
+            src="images/homeClosed.png"
+            onmouseover="this.src='images/homeOpen.png';"
+            onmouseout="this.src='images/homeClosed.png';"
+            class="illustration"
+            alt="Editor illustration"
+            title="Click the image!" /></a
+        ><br />
+        <a href="songlist.html"
+        ><img
+          src="images/rankClosed.png"
+          onmouseover="this.src='images/rankOpen.png';"
+          onmouseout="this.src='images/rankClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!"
+      /></a><br />
+      <a href="swipe.html"
+        ><img
+          src="images/swipeClosed.png"
+          onmouseover="this.src='images/swipeOpen.png';"
+          onmouseout="this.src='images/swipeClosed.png';"
+          class="illustration"
+          alt="Editor illustration"
+          title="Click the image!"
+      /></a><br />
+      </div>
+
+      <div class="pageRight">
+        <img src="images/quizTitle.png" width="1000px"/>
+        <h2 style="color:#008B0E">Pick a genre...</h2>
+        <button class="genreButton" onclick="pop()">Pop</button>
+        <button class="genreButton" onclick="rap()">Rap</button>
+        <button class="genreButton" onclick="kpop()">K-pop</button>
+
+        <!-- pop -->
+        <div id="pQuestions">
+          <div id="pQuestion1">
+            <h2 class="wordQuestion">Which is not a Taylor Swift album?</h2>
+            <div class="answer-choice">
+              <br />
+              <button id="pq1a1">Red</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq1a2">Butter</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq1a3">Delicate</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq1a4">Fearless</button>
+            </div>
+          </div>
+
+          <div id="pQuestion2" class="question">
+            <h2 class="wordQuestion">
+              What was the top-played radio hit of 2021? Hint: it is a pop song.
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="pq2a1">"Levitating" by Dua Lipa</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq2a2">"Peaches" by Justin Bieber</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq2a3">"Save Your Tears" by The Weeknd</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq2a4">"Blinding Lights" by The Weeknd</button>
+            </div>
+          </div>
+
+          <div id="pQuestion3" class="question">
+            <h2 class="wordQuestion">
+              Which of these pop artist pairs are a sibling duo?
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="pq3a1">Shawn Mendes and Camila Cabello</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq3a2">Billie Eilish and Finneas</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq3a3">Beyonce and Jay-Z</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="pq3a4">Dove Cameron and Ryan Carson</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- rap -->
+        <div id="rQuestions">
+          <div id="rQuestion1">
+            <h2 class="wordQuestion">
+              What was the top-streamed rapper of 2021?
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="rq1a1">Drake</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq1a2">Lil Nas X</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq1a3">Nicki Minaj</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq1a4">Jack Harlow</button>
+            </div>
+          </div>
+
+          <div id="rQuestion2" class="question">
+            <h2 class="wordQuestion">
+              Which rap artist is known for "Industry Baby"?
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="rq2a1">Mark Jeno JJ</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq2a2">Velveta Red</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq2a3">Jay Park</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq2a4">Lil Nas X</button>
+            </div>
+          </div>
+
+          <div id="rQuestion3" class="question">
+            <h2 class="wordQuestion">
+              How many words can Eminem rap in a second?
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="rq3a1">5</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq3a2">4.86</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq3a3">4.64</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="rq3a4">4.28</button>
+            </div>
+          </div>
+        </div>
+
+        <!--   kpop -->
+        <div id="kQuestions">
+          <div id="kQuestion1">
+            <h2 class="wordQuestion">Which of these groups debuted in 2016?</h2>
+            <div class="answer-choice">
+              <br />
+              <button id="kq1a1">Stray Kids</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq1a2">BTS</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq1a3">NCT Dream</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq1a4">Enhypen</button>
+            </div>
+          </div>
+
+          <div id="kQuestion2" class="question">
+            <h2 class="wordQuestion">
+              Which of these groups does not have a leader?
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="kq2a1">Blackpink</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq2a2">Iz*One</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq2a3">Aespa</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq2a4">StayC</button>
+            </div>
+          </div>
+
+          <div id="kQuestion3" class="question">
+            <h2 class="wordQuestion">
+              Which group does not have a Chinese member?
+            </h2>
+            <div class="answer-choice">
+              <br />
+              <button id="kq3a1">NCT Dream</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq3a2">WayV</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq3a3">NCT 127</button>
+            </div>
+            <div class="answer-choice">
+              <br />
+              <button id="kq3a4">Exo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result">
+      <h2 id="result" style="color:#008B0E">Your result is...</h2>
+    </div>
+
+    <div class="restart">
+      <button id="restart">Restart</button>
+    </div>
+  </body>
+</html>
